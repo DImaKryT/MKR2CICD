@@ -1,21 +1,10 @@
 from django.shortcuts import render
+from .models import Recipe
 
-# Create your views here.
-def mainPage(request):
-    return HttpResponse("main Page")
+def main(request):
+    recipes = Recipe.objects.filter(year=2023)
+    return render(request, 'main.html', {'recipes': recipes})
 
-def mainPageTemplate(request):
-    return render(request,"main.html")
-def recipeLogin(request):
-    return render(request,"main/recipe_detail.html")
-def recipeLoginProcess(request):
-    username=request.POST.get("ID")
-    password=request.POST.get("Name")
-
-    user=authenticate(request=request,ID=ID,Name=Name)
-    if user is not None:
-        login(request=request,user=user)
-        return HttpResponseRedirect(reverse("main_home"))
-    else:
-        messages.error(request,"Error in Login! Invalid Login Details!")
-        return HttpResponseRedirect(reverse("main_login"))
+def recipe_detail(request, recipe_id):
+    recipe = Recipe.objects.get(id=recipe_id)
+    return render(request, 'recipe_detail.html', {'recipe': recipe})
