@@ -1,14 +1,14 @@
 from django.shortcuts import render
 
 # Create your views here.
-def demoPage(request):
+def mainPage(request):
     return HttpResponse("main Page")
 
-def demoPageTemplate(request):
+def mainPageTemplate(request):
     return render(request,"main.html")
-def adminLogin(request):
+def recipeLogin(request):
     return render(request,"main/recipe_detail.html")
-def adminLoginProcess(request):
+def recipeLoginProcess(request):
     username=request.POST.get("username")
     password=request.POST.get("password")
 
