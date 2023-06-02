@@ -9,10 +9,10 @@ def mainPageTemplate(request):
 def recipeLogin(request):
     return render(request,"main/recipe_detail.html")
 def recipeLoginProcess(request):
-    username=request.POST.get("username")
-    password=request.POST.get("password")
+    username=request.POST.get("ID")
+    password=request.POST.get("Name")
 
-    user=authenticate(request=request,username=username,password=password)
+    user=authenticate(request=request,ID=ID,Name=Name)
     if user is not None:
         login(request=request,user=user)
         return HttpResponseRedirect(reverse("main_home"))
